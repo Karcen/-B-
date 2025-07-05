@@ -74,7 +74,7 @@ This project constructs a dynamic model of the Sino-US trade war based on evolut
 
 ### Output Interpretation
 
-![Simulation Results](dynamic_parameters_trade_war_simulation.png)
+![Simulation Results](main.png)
 
 1. **Strategy Evolution** 📈  
    Probability changes of key strategies over time for both countries
