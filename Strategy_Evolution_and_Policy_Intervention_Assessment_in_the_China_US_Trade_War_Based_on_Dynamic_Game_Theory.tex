@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{float} % For precise figure placement
+\usepackage{subcaption} % For subfigures
+\usepackage{hyperref} % For hyperlinks
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+
+\title{Strategy Evolution and Policy Intervention in the China–US Trade War: A Dynamic Game Theoretic Approach}
+\author{Karcen Zheng}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Methodology}
+
+This section presents the theoretical framework and computational scheme employed to model the dynamic strategic interactions between China and the United States within the context of a trade war. The proposed methodology integrates evolutionary game theory and a system of coupled ordinary differential equations (ODEs) to simulate the co-evolution of strategic behavior across multiple economic sectors under varying policy interventions and global influences.
+
+\subsection{Model Framework}
+
+The model is grounded in \textit{replicator dynamics}, a central concept in evolutionary game theory for describing how the prevalence of strategies evolves according to their relative fitness. Here, the “populations” correspond to the strategic portfolios of China and the US, with “fitness” quantified in terms of sectoral economic payoffs. To account for the complexity of international trade disputes, the model extends classical replicator dynamics by incorporating time-varying and state-dependent parameters that reflect adaptive strategic behavior and exogenous shocks.
+
+Let \(x_{i,j}(t)\) denote the probability that China adopts strategy \(i\) in sector \(j\) at time \(t\), and \(y_{k,j}(t)\) the probability that the US adopts strategy \(k\) in the same sector. Assuming \(N_{SC}\) strategies for China, \(N_{SU}\) strategies for the US, and \(N_S\) economic sectors, the replicator equations are formulated as follows:
+
+\begin{align*}
+\frac{dx_{i,j}}{dt} &= x_{i,j} \left( \pi_{i,j}^C - \bar{\pi}_j^C \right) + \mu_C P_{i,j}^C, \\
+\frac{dy_{k,j}}{dt} &= y_{k,j} \left( \pi_{k,j}^U - \bar{\pi}_j^U \right) + \mu_U P_{k,j}^U,
+\end{align*}
+
+where:
+\begin{itemize}
+    \item \(\pi_{i,j}^C\) and \(\pi_{k,j}^U\): Fitness (expected payoff) of China’s strategy \(i\) and US’s strategy \(k\) in sector \(j\).
+    \item \(\bar{\pi}_j^C\) and \(\bar{\pi}_j^U\): Mean fitness of all strategies in sector \(j\) for China and the US, respectively.
+    \item \(\mu_C\), \(\mu_U\): Policy intervention intensities representing the strength of government influence in shaping strategic distributions.
+    \item \(P_{i,j}^C\), \(P_{k,j}^U\): Policy matrices encoding exogenous interventions that can directly alter strategic probabilities.
+\end{itemize}
+
+At each time \(t\), strategy probabilities are normalized such that \(\sum_i x_{i,j} = 1\) and \(\sum_k y_{k,j} = 1\) for all sectors \(j\).
+
+\subsection{Dynamic Parameterization}
+
+The model introduces a set of dynamic parameters that evolve as functions of both internal states and external conditions, capturing the adaptive and stochastic features of trade conflicts.
+
+\subsubsection{Dynamic Payoff Matrices}
+
+For each sector \(j\), China’s and the US’s payoff matrices \(M^C\) and \(M^U\) are defined as:
+
+\begin{align*}
+M_{i,k,j}^C &= B_{i,k,j}^C \cdot (1 + TI_j^C) \cdot GVC_j^C \cdot IE, \\
+M_{k,i,j}^U &= B_{k,i,j}^U \cdot (1 + TI_j^U) \cdot GVC_j^U \cdot IE,
+\end{align*}
+
+where:
+\begin{itemize}
+    \item \(B_{i,k,j}^C\), \(B_{k,i,j}^U\): Base payoff matrices representing inherent strategic interactions.
+    \item \(TI_j^C\), \(TI_j^U\): Technology impact factors influencing competitiveness.
+    \item \(GVC_j^C\), \(GVC_j^U\): Global value chain (GVC) positioning reflecting supply chain integration.
+    \item \(IE\): International environment factor accounting for macroeconomic cycles, third-party influence, and governance strength.
+\end{itemize}
+
+\subsubsection{Adaptive Policy Intervention}
+
+Policy intensity \(\mu_C\) and \(\mu_U\) are dynamic functions of time, payoffs, and strategy volatility:
+\begin{itemize}
+    \item \textbf{Temporal decay}: Models diminishing effectiveness of prolonged interventions (\textit{war fatigue}).
+    \item \textbf{Payoff sensitivity}: Higher relative payoffs incentivize sustained intervention.
+    \item \textbf{Volatility response}: Strategic instability amplifies intervention urgency.
+\end{itemize}
+
+\subsubsection{Other Dynamic Factors}
+
+Additional adaptive components include:
+\begin{itemize}
+    \item \textbf{Sectoral weights}: Dynamically adjusted based on performance trends and diversification pressures.
+    \item \textbf{Policy randomness}: Stochastic fluctuations increase with payoff disparities and global economic stress.
+    \item \textbf{International environment}: Incorporates cyclical booms, governance decay, and exogenous shocks.
+    \item \textbf{Technology diffusion}: Captures intra- and inter-sector innovation propagation, influenced by cooperation and conflict.
+    \item \textbf{GVC restructuring}: Models supply chain shifts under aggressive trade policies and random disruptions.
+\end{itemize}
+
+\subsection{Numerical Implementation}
+
+The system of coupled ODEs is solved numerically using \texttt{scipy.integrate.odeint}, starting from uniform strategy distributions across sectors. Simulation parameters (relative/absolute tolerances and maximum step counts) are carefully calibrated to ensure numerical stability given the model’s complexity.
+
+\subsection{Post-processing and Visualization}
+
+Simulation outputs are reshaped into matrix form and renormalized at each time step to maintain probabilistic consistency. Key metrics are derived and visualized, including:
+\begin{itemize}
+    \item Temporal evolution of strategic distributions.
+    \item Average payoffs and their relative trajectories.
+    \item Sectoral weight dynamics.
+    \item Fluctuations in policy intervention intensities (\(\mu\)).
+    \item Impacts of international environment and GVC positioning.
+    \item Technology advancement trends and policy randomness profiles.
+\end{itemize}
+
+These visualizations provide critical insights into the interplay of strategies, policies, and global factors throughout the simulated trade conflict.
+
+\end{document}
